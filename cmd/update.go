@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/cguertin14/k3s-ansible-updater/pkg/updater"
+	"github.com/cguertin14/k3supdater/pkg/updater"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

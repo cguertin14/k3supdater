@@ -1,4 +1,4 @@
-module github.com/cguertin14/k3s-ansible-updater
+module github.com/cguertin14/k3supdater
 
 go 1.17
 

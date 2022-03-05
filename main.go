@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/cguertin14/k3s-ansible-updater/cmd"
+	"github.com/cguertin14/k3supdater/cmd"
 )
 
 func main() {

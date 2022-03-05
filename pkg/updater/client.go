@@ -3,7 +3,7 @@ package updater
 import (
 	"context"
 
-	github "github.com/cguertin14/k3s-ansible-updater/pkg/github"
+	github "github.com/cguertin14/k3supdater/pkg/github"
 )
 
 type ClientSet struct {
