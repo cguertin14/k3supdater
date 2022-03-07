@@ -51,11 +51,6 @@ type CreateBranchRequest struct {
 }
 
 type Client interface {
-	// GetRepository
-	//
-	// Fetches a repository given github options.
-	GetRepository(ctx context.Context, req CommonRequest) (*github.Repository, *github.Response, error)
-
 	// GetRepositoryContents
 	//
 	// Fetches a specific file/folder in a github repo on a given branch.
@@ -65,11 +60,6 @@ type Client interface {
 	//
 	// Get all releases from a given repository.
 	GetRepositoryReleases(ctx context.Context, req CommonRequest) ([]*github.RepositoryRelease, *github.Response, error)
-
-	// GetRepositoryReleases
-	//
-	// Get a specific release from a given repository.
-	GetRepositoryRelease(ctx context.Context, req GetReleaseRequest) (*github.RepositoryRelease, *github.Response, error)
 
 	// GetBranch
 	//
@@ -111,15 +101,6 @@ func NewClient(ctx context.Context, accessToken string) *ClientSet {
 // implements Client interface
 var _ Client = &ClientSet{}
 
-func (c *ClientSet) GetRepositoryRelease(ctx context.Context, req GetReleaseRequest) (*github.RepositoryRelease, *github.Response, error) {
-	return c.github.Repositories.GetRelease(
-		ctx,
-		req.Owner,
-		req.Repo,
-		req.ReleaseID,
-	)
-}
-
 func (c *ClientSet) GetRepositoryReleases(ctx context.Context, req CommonRequest) ([]*github.RepositoryRelease, *github.Response, error) {
 	return c.github.Repositories.ListReleases(
 		ctx,
@@ -148,10 +129,6 @@ func (c *ClientSet) CreatePullRequest(ctx context.Context, req CreatePRRequest) 
 		req.Repo,
 		req.NewPullRequest,
 	)
-}
-
-func (c *ClientSet) GetRepository(ctx context.Context, req CommonRequest) (*github.Repository, *github.Response, error) {
-	return c.github.Repositories.Get(ctx, req.Owner, req.Repo)
 }
 
 func (c *ClientSet) GetBranch(ctx context.Context, req GetBranchRequest) (*github.Reference, *github.Response, error) {

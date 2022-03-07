@@ -30,6 +30,7 @@ const (
 	k3sVersionKey string = "k3s_release_version"
 )
 
+// TODO: Split UpdateK3sRelease function in multiple sub-functions.
 func (c *ClientSet) UpdateK3sRelease(ctx context.Context, req UpdateReleaseReq) error {
 	logger := logger.NewFromContextOrDefault(ctx)
 
