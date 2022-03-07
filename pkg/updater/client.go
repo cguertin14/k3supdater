@@ -7,22 +7,17 @@ import (
 )
 
 type ClientSet struct {
-	client         github.Client
-	repoURI        string
-	releaseRepoURI string
+	client github.Client
 }
 
 type Dependencies struct {
-	Client         github.Client
-	AccessToken    string
-	RepoURI        string
-	ReleaseRepoURI string
+	Client      github.Client
+	AccessToken string
 }
 
 func NewClient(ctx context.Context, deps Dependencies) *ClientSet {
 	c := &ClientSet{
-		repoURI:        deps.RepoURI,
-		releaseRepoURI: deps.ReleaseRepoURI,
+		client: deps.Client,
 	}
 
 	if deps.Client == nil {
