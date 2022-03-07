@@ -100,7 +100,7 @@ func (c *ClientSet) UpdateK3sRelease(ctx context.Context, req UpdateReleaseReq) 
 	}
 
 	// No update required in this case
-	if *versionToUpdateTo.Name == "" {
+	if versionToUpdateTo.Name == nil {
 		logger.Infof("Current version %q is the latest version available for k3s, therefore not updating", currentVersion)
 		return nil
 	}
