@@ -2,6 +2,7 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/cguertin14/k3supdater)](https://goreportcard.com/report/github.com/cguertin14/k3supdater)
 [![codecov](https://codecov.io/gh/cguertin14/k3supdater/branch/main/graph/badge.svg?token=BUUUB7F5HX)](https://codecov.io/gh/cguertin14/k3supdater)
+[![Docker Repository on Quay](https://quay.io/repository/cguertin14/k3supdater/status "Docker Repository on Quay")](https://quay.io/repository/cguertin14/k3supdater)
 
 
 Updater (similar to Renovate Bot) for k3s ansible playbook versions.
