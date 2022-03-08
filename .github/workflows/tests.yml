@@ -29,7 +29,4 @@ jobs:
           retention-days: 5
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          verbose: true
+        run: bash <(curl -s https://codecov.io/bash)
