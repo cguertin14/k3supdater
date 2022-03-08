@@ -1,0 +1,27 @@
+name: Test app
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.17.8'
+        run: go version
+
+      - name: Check out source code
+        uses: actions/checkout@v1
+
+      - name: Build
+        run: make test
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests-resultss
+          path: cover.html
+          retention-days: 5

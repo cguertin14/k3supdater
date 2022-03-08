@@ -1,0 +1,6 @@
+name: Release app
+
+on:
+  push:
+    tags:
+    - '*'
