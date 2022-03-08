@@ -1,0 +1,30 @@
+project_name: k3supdater
+
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+
+    goos:
+      - linux
+      - windows
+      - darwin
+
+    binary: "{{ .ProjectName }}"
+
+    ldflags:
+      - -X github.com/cguertin14/k3supdater/cmd.BuildDate="{{ .Date }}"
+      - -X github.com/cguertin14/k3supdater/cmd.GitCommit="{{ .Commit }}"
+      - -X github.com/cguertin14/k3supdater/cmd.Version="{{ .Version }}"
+
+
+changelog:
+  sort: asc
+
+release:
+  github:
+    owner: cguertin14
+    name: k3supdater

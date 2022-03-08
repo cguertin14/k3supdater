@@ -1,6 +1,8 @@
 # k3supdater
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/cguertin14/k3supdater)](https://goreportcard.com/report/github.com/cguertin14/k3supdater)
+[![codecov](https://codecov.io/gh/cguertin14/k3supdater/branch/main/graph/badge.svg?token=BUUUB7F5HX)](https://codecov.io/gh/cguertin14/k3supdater)
+[![Docker Repository on Quay](https://quay.io/repository/cguertin14/k3supdater/status "Docker Repository on Quay")](https://quay.io/repository/cguertin14/k3supdater)
 
 
 Updater (similar to Renovate Bot) for k3s ansible playbook versions.
@@ -12,7 +14,7 @@ First, you need to create a Github access token with write access to the reposit
 
 ## Usage
 
-To use `k3supdater`, you'll need to download the binary (TODO: Add download link here) or compile it locally.
+To use `k3supdater`, you'll need to [download the appropriate binary for your machine](https://github.com/cguertin14/k3supdater/releases) or compile it locally. It can also be used via docker, using the `quay.io/cguertin14/k3supdater` image.
 
 Then, you'll be able to run update commands like so:
 ```bash
