@@ -15,4 +15,4 @@
 # vendor/
 
 k3supdater
-cover.*
+coverage.*

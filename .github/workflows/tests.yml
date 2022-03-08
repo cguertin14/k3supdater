@@ -25,5 +25,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tests-results
-          path: cover.html
+          path: coverage.html
           retention-days: 5
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true

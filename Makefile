@@ -9,8 +9,8 @@ build:
 	@go build -o ./${BIN_NAME}  .
 
 test:
-	@go test -v ./... -coverprofile cover.out
-	go tool cover -html=cover.out -o cover.html
+	@go test -v ./... -coverprofile coverage.out
+	go tool cover -html=coverage.out -o coverage.html
 
 generate-mock:
 	@go generate -v ./...
