@@ -1,0 +1,22 @@
+project_name: k3supdater
+
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    binary: "{{ .ProjectName }}"
+
+changelog:
+  sort: asc
+
+release:
+  github:
+    owner: cguertin14
+    name: k3supdater
