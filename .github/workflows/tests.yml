@@ -18,12 +18,12 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v1
 
-      - name: Build
+      - name: Run tests
         run: make test
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: tests-resultss
+          name: tests-results
           path: cover.html
           retention-days: 5
