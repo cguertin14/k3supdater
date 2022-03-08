@@ -20,7 +20,6 @@ jobs:
           BUILD_DATE=$(date '+%FT%TZ')
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=git_commit::${GIT_COMMIT}
-          echo ::set-output name=git_branch::${GIT_BRANCH}
           echo ::set-output name=build_date::${BUILD_DATE}
 
       - name: Set up QEMU
