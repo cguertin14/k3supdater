@@ -1,16 +1,16 @@
 # Step 1 - compile code binary
 FROM golang:1.17.8-alpine AS builder
 
-LABEL maintainer="Charles Guertin"
+LABEL maintainer="Charles Guertin <charlesguertin@live.ca>"
 
 ARG TARGETOS
 ARG TARGETARCH
 ARG TARGETVARIANT=""
 
 ENV CGO_ENABLED=0 \
-	GOOS=${TARGETOS} \
-	GOARCH=${TARGETARCH} \
-	GOARM=${TARGETVARIANT}
+    GOOS=${TARGETOS} \
+    GOARCH=${TARGETARCH} \
+    GOARM=${TARGETVARIANT}
 
 RUN apk add --no-cache --update ca-certificates make
 
