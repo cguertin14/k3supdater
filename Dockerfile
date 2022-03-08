@@ -23,10 +23,11 @@ COPY go.* ./
 RUN go mod download
 
 COPY . ./
-RUN go build -o ./k3supdater . \
-    -X github.com/cguertin14/k3supdater/cmd.BuildDate=${BUILD_DATE} \
-    -X github.com/cguertin14/k3supdater/cmd.GitCommit=${GIT_COMMIT} \
-    -X github.com/cguertin14/k3supdater/cmd.Version=${VERSION}
+RUN go build \
+    -ldflags "-X github.com/cguertin14/k3supdater/cmd.BuildDate=${BUILD_DATE}" \
+    -ldflags "-X github.com/cguertin14/k3supdater/cmd.GitCommit=${GIT_COMMIT}" \
+    -ldflags "-X github.com/cguertin14/k3supdater/cmd.Version=${VERSION}" \
+    -o ./k3supdater .
 
 # Add user & group
 RUN addgroup -S updater-group && \
