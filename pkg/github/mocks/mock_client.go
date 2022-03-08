@@ -36,6 +36,22 @@ func (m *MockClient) EXPECT() *MockClientMockRecorder {
 	return m.recorder
 }
 
+// CreateBranch mocks base method.
+func (m *MockClient) CreateBranch(arg0 context.Context, arg1 legacy.CreateBranchRequest) (*github.Reference, *github.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateBranch", arg0, arg1)
+	ret0, _ := ret[0].(*github.Reference)
+	ret1, _ := ret[1].(*github.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// CreateBranch indicates an expected call of CreateBranch.
+func (mr *MockClientMockRecorder) CreateBranch(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateBranch", reflect.TypeOf((*MockClient)(nil).CreateBranch), arg0, arg1)
+}
+
 // CreatePullRequest mocks base method.
 func (m *MockClient) CreatePullRequest(arg0 context.Context, arg1 legacy.CreatePRRequest) (*github.PullRequest, *github.Response, error) {
 	m.ctrl.T.Helper()
@@ -52,20 +68,53 @@ func (mr *MockClientMockRecorder) CreatePullRequest(arg0, arg1 interface{}) *gom
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreatePullRequest", reflect.TypeOf((*MockClient)(nil).CreatePullRequest), arg0, arg1)
 }
 
-// GetRepository mocks base method.
-func (m *MockClient) GetRepository(arg0 context.Context, arg1 legacy.CommonRequest) (*github.Repository, *github.Response, error) {
+// GetBranch mocks base method.
+func (m *MockClient) GetBranch(arg0 context.Context, arg1 legacy.GetBranchRequest) (*github.Reference, *github.Response, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetRepository", arg0, arg1)
-	ret0, _ := ret[0].(*github.Repository)
+	ret := m.ctrl.Call(m, "GetBranch", arg0, arg1)
+	ret0, _ := ret[0].(*github.Reference)
 	ret1, _ := ret[1].(*github.Response)
 	ret2, _ := ret[2].(error)
 	return ret0, ret1, ret2
 }
 
-// GetRepository indicates an expected call of GetRepository.
-func (mr *MockClientMockRecorder) GetRepository(arg0, arg1 interface{}) *gomock.Call {
+// GetBranch indicates an expected call of GetBranch.
+func (mr *MockClientMockRecorder) GetBranch(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRepository", reflect.TypeOf((*MockClient)(nil).GetRepository), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBranch", reflect.TypeOf((*MockClient)(nil).GetBranch), arg0, arg1)
+}
+
+// GetRepositoryContents mocks base method.
+func (m *MockClient) GetRepositoryContents(arg0 context.Context, arg1 legacy.GetRepositoryContentsRequest) (*github.RepositoryContent, []*github.RepositoryContent, *github.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetRepositoryContents", arg0, arg1)
+	ret0, _ := ret[0].(*github.RepositoryContent)
+	ret1, _ := ret[1].([]*github.RepositoryContent)
+	ret2, _ := ret[2].(*github.Response)
+	ret3, _ := ret[3].(error)
+	return ret0, ret1, ret2, ret3
+}
+
+// GetRepositoryContents indicates an expected call of GetRepositoryContents.
+func (mr *MockClientMockRecorder) GetRepositoryContents(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRepositoryContents", reflect.TypeOf((*MockClient)(nil).GetRepositoryContents), arg0, arg1)
+}
+
+// GetRepositoryReleases mocks base method.
+func (m *MockClient) GetRepositoryReleases(arg0 context.Context, arg1 legacy.CommonRequest) ([]*github.RepositoryRelease, *github.Response, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetRepositoryReleases", arg0, arg1)
+	ret0, _ := ret[0].([]*github.RepositoryRelease)
+	ret1, _ := ret[1].(*github.Response)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// GetRepositoryReleases indicates an expected call of GetRepositoryReleases.
+func (mr *MockClientMockRecorder) GetRepositoryReleases(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRepositoryReleases", reflect.TypeOf((*MockClient)(nil).GetRepositoryReleases), arg0, arg1)
 }
 
 // UpdateFile mocks base method.

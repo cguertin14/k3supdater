@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/cguertin14/k3supdater/pkg/updater"
+	"github.com/cguertin14/logger"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -36,6 +38,10 @@ func update(cmd *cobra.Command, args []string) (err error) {
 	if err = v.BindPFlags(cmd.Flags()); err != nil {
 		return fmt.Errorf("error when parsing flags: %s", err)
 	}
+
+	// init logger
+	ctxLogger := logger.Initialize(logger.Config{Level: "info"})
+	ctx = context.WithValue(ctx, logger.CtxKey, ctxLogger)
 
 	// create business logic client here
 	client := updater.NewClient(ctx, updater.Dependencies{
