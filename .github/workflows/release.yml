@@ -17,12 +17,11 @@ jobs:
         run: |
           VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
           GIT_COMMIT=$(git rev-parse --short HEAD)
-          GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-          BUILD_TIME=$(date '+%FT%TZ')
+          BUILD_DATE=$(date '+%FT%TZ')
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=git_commit::${GIT_COMMIT}
           echo ::set-output name=git_branch::${GIT_BRANCH}
-          echo ::set-output name=build_time::${BUILD_TIME}
+          echo ::set-output name=build_date::${BUILD_DATE}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -49,8 +48,7 @@ jobs:
           build-args: | 
             VERSION=${{ steps.prep.outputs.version }}
             GIT_COMMIT=${{ steps.prep.outputs.git_commit }}
-            GIT_BRANCH=${{ steps.prep.outputs.git_branch }}
-            BUILD_TIME=${{ steps.prep.outputs.build_time }}
+            BUILD_DATE=${{ steps.prep.outputs.build_date }}
           context: ./
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true

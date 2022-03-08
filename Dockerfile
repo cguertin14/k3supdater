@@ -10,7 +10,10 @@ ARG TARGETVARIANT=""
 ENV CGO_ENABLED=0 \
     GOOS=${TARGETOS} \
     GOARCH=${TARGETARCH} \
-    GOARM=${TARGETVARIANT}
+    GOARM=${TARGETVARIANT} \
+    BUILD_DATE=${BUILD_DATE} \
+    VERSION=${VERSION} \
+    GIT_COMMIT=${GIT_COMMIT}
 
 RUN apk add --no-cache --update ca-certificates make
 
@@ -20,7 +23,10 @@ COPY go.* ./
 RUN go mod download
 
 COPY . ./
-RUN make build
+RUN go build -o ./k3supdater . \
+    -X github.com/cguertin14/k3supdater/cmd.BuildDate=${BUILD_DATE} \
+    -X github.com/cguertin14/k3supdater/cmd.GitCommit=${GIT_COMMIT} \
+    -X github.com/cguertin14/k3supdater/cmd.Version=${VERSION}
 
 # Add user & group
 RUN addgroup -S updater-group && \
