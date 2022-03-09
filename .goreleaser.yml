@@ -20,9 +20,21 @@ builds:
       - -X github.com/cguertin14/k3supdater/cmd.GitCommit="{{ .Commit }}"
       - -X github.com/cguertin14/k3supdater/cmd.Version="{{ .Version }}"
 
-
 changelog:
   sort: asc
+
+  groups:
+  - title: Major changes
+    regexp: "^.*major[(\\w)]*:+.*$"
+    order: 0
+  - title: Minor changes
+    regexp: "^.*minor[(\\w)]*:+.*$"
+    order: 2
+  - title: Bug fixes
+    regexp: "^.*fix[(\\w)]*:+.*$"
+    order: 3
+  - title: Others
+    order: 999
 
 release:
   github:
