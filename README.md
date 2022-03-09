@@ -20,3 +20,7 @@ Then, you'll be able to run update commands like so:
 ```bash
 $ k3supdater update --repo-owner cguertin14 --repo-name k3s-ansible-ha
 ```
+
+## Kubernetes Manifests
+
+If you want to use `k3supdater` inside your kubernetes cluster, make sure to check out the [k8s manifests](./manifests/README.md) we have defined for this project.
