@@ -1,0 +1,34 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: k3supdater-cron
+spec:
+  # Cronjob will run once a day to check for updates.
+  schedule: '@daily'
+  successfulJobsHistoryLimit: 7
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: k3supdater
+            image: quay.io/cguertin14/k3supdater
+            args:
+            - --repo-owner=cguertin14
+            - --repo-name=k3s-ansible-ha
+            env:
+            # Warning: You need to define this secret in your config.
+            - name: GITHUB_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: GITHUB_ACCESS_TOKEN
+                  name: github-access-token
+            resources:
+              limits:
+                cpu: 200m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 64Mi
+          restartPolicy: OnFailure
