@@ -13,7 +13,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: github-access-token
-	namespace: k3supdater
+  namespace: k3supdater
 type: Opaque
 data:
   GITHUB_ACCESS_TOKEN: <YOUR_ACCESS_TOKEN_HERE>
