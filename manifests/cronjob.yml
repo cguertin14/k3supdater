@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: k3supdater-cron
@@ -15,6 +15,7 @@ spec:
           - name: k3supdater
             image: quay.io/cguertin14/k3supdater
             args:
+            - update
             - --repo-owner=cguertin14
             - --repo-name=k3s-ansible-ha
             env:
