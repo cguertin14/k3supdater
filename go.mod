@@ -3,7 +3,7 @@ module github.com/cguertin14/k3supdater
 go 1.17
 
 require (
-	github.com/cguertin14/logger v1.0.3
+	github.com/cguertin14/logger v1.0.6
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v43 v43.0.0
 	github.com/spf13/cobra v1.3.0
@@ -29,7 +29,7 @@ require (
 	github.com/subosito/gotenv v1.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
-	golang.org/x/sys v0.0.0-20220307203707-22a9840ba4d7 // indirect
+	golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect

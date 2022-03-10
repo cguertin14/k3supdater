@@ -40,7 +40,10 @@ func update(cmd *cobra.Command, args []string) (err error) {
 	}
 
 	// init logger
-	ctxLogger := logger.Initialize(logger.Config{Level: "info"})
+	ctxLogger := logger.Initialize(logger.Config{
+		Level:     "info",
+		Formatter: logger.ServiceFormatter,
+	})
 	ctx = context.WithValue(ctx, logger.CtxKey, ctxLogger)
 
 	// create business logic client here

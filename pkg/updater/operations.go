@@ -58,7 +58,7 @@ const (
 
 func (c *ClientSet) getGroupVarsFileContent(ctx context.Context, req UpdateReleaseReq) (repoContent *github.RepositoryContent, fileContent string, err error) {
 	logger := logger.NewFromContextOrDefault(ctx)
-	logger.Infof("Fetching %q from %s/%s...\n", req.Repo.Path, req.Repo.Owner, req.Repo.Name)
+	logger.Infof("Fetching %q from %s/%s...", req.Repo.Path, req.Repo.Owner, req.Repo.Name)
 
 	repoContent, _, _, err = c.client.GetRepositoryContents(ctx, legacy.GetRepositoryContentsRequest{
 		Owner:  req.Repo.Owner,
@@ -83,7 +83,7 @@ func (c *ClientSet) getGroupVarsFileContent(ctx context.Context, req UpdateRelea
 
 func (c *ClientSet) getLatestK3sRelease(ctx context.Context, req getLatestK3sReleaseRequest) (latestRelease *github.RepositoryRelease, currentVersion string, err error) {
 	logger := logger.NewFromContextOrDefault(ctx)
-	logger.Infof("Fetching the latest k3s release from %s/%s...\n", req.ReleaseRepo.Owner, req.ReleaseRepo.Name)
+	logger.Infof("Fetching the latest k3s release from %s/%s...", req.ReleaseRepo.Owner, req.ReleaseRepo.Name)
 
 	regz := regexp.MustCompile(fmt.Sprintf("%s.*", k3sVersionKey))
 	extracted := regz.FindStringSubmatch(req.fileContent)
@@ -131,7 +131,7 @@ func (c *ClientSet) getLatestK3sRelease(ctx context.Context, req getLatestK3sRel
 			// if compared == 1, this means the current
 			// version is more recent than the other ones.
 			latestRelease = v
-			logger.Warnf("A new k3s version is available: %q\n", *latestRelease.Name)
+			logger.Warnf("A new k3s version is available: %q", *latestRelease.Name)
 			break
 		}
 	}
@@ -239,7 +239,7 @@ func (c *ClientSet) UpdateK3sRelease(ctx context.Context, req UpdateReleaseReq) 
 
 	// No update required in this case
 	if latestRelease.Name == nil {
-		logger.Infof("Current version %q is the latest version available for k3s, therefore not updating.\n", currentVersion)
+		logger.Infof("Current version %q is the latest version available for k3s, therefore not updating.", currentVersion)
 		return nil
 	}
 
