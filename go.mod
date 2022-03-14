@@ -9,7 +9,7 @@ require (
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.10.1
 	golang.org/x/mod v0.5.1
-	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b
+	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a
 )
 
 require (
