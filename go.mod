@@ -6,7 +6,7 @@ require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v43 v43.0.0
-	github.com/spf13/cobra v1.3.0
+	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.10.1
 	golang.org/x/mod v0.5.1
 	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b
