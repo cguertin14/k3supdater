@@ -13,4 +13,4 @@ resources:
 images:
 # Needs to be updated on each new release
 - name: quay.io/cguertin14/k3supdater
-  newTag: v1.0.4
+  newTag: v1.0.5

@@ -18,7 +18,7 @@ ENV CGO_ENABLED=0 \
     VERSION=${VERSION} \
     GIT_COMMIT=${GIT_COMMIT}
 
-RUN apk add --no-cache --update ca-certificates make
+RUN apk add --no-cache --update ca-certificates make git
 
 WORKDIR /app
 
