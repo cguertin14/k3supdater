@@ -9,7 +9,7 @@ build:
 	@go build -o ./${BIN_NAME}  .
 
 test:
-	@go test -v ./... -coverprofile coverage.out
+	@go test --tags unit -v ./... -coverprofile coverage.out
 	go tool cover -html=coverage.out -o coverage.html
 
 generate-mock:
