@@ -1,3 +1,5 @@
+//+build test
+
 package updater
 
 import (
@@ -56,12 +58,12 @@ func TestUpdateK3sRelease(t *testing.T) {
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
 			if c.currentVersion == "" {
 				c.currentVersion = "v1.23.3"
 			}
-
-			ctrl := gomock.NewController(t)
-			defer ctrl.Finish()
 
 			// create new mock client instance
 			githubMockClient := github_mocks.NewMockClient(ctrl)
@@ -79,20 +81,24 @@ func TestUpdateK3sRelease(t *testing.T) {
 				MaxTimes(1).
 				Return([]*github.RepositoryRelease{
 					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.23.5-rc1"),
+						Body:       github.String("some release notes"),
+						Name:       github.String("v1.23.5-rc1"),
+						Prerelease: github.Bool(false),
 					},
 					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.23.4"),
+						Body:       github.String("some release notes"),
+						Name:       github.String("v1.23.4"),
+						Prerelease: github.Bool(false),
 					},
 					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.22.3"),
+						Body:       github.String("some release notes"),
+						Name:       github.String("v1.22.3"),
+						Prerelease: github.Bool(false),
 					},
 					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.21.5"),
+						Body:       github.String("some release notes"),
+						Name:       github.String("v1.21.5"),
+						Prerelease: github.Bool(false),
 					},
 				}, nil, c.latestReleaseError)
 			githubMockClient.EXPECT().GetBranch(gomock.Any(), gomock.Any()).
@@ -127,6 +133,7 @@ func TestUpdateK3sRelease(t *testing.T) {
 					Name:  "k3s",
 				},
 			})
+			fmt.Println(err)
 			if c.expectError && err == nil {
 				t.FailNow()
 			}
@@ -195,14 +202,42 @@ func TestGetGroupVarsFileContent(t *testing.T) {
 }
 
 func TestGetLatestK3sRelease(t *testing.T) {
+	commonReleases := []*github.RepositoryRelease{
+		{
+			Body:       github.String("some release notes"),
+			Name:       github.String("v1.23.5-rc1"),
+			Prerelease: github.Bool(false),
+		},
+		{
+			Body:       github.String("some release notes"),
+			Name:       github.String("v1.23.4"),
+			Prerelease: github.Bool(false),
+		},
+		{
+			Body:       github.String("some release notes"),
+			Name:       github.String("v1.22.3"),
+			Prerelease: github.Bool(false),
+		},
+		{
+			Body:       github.String("some release notes"),
+			Name:       github.String("v1.21.5"),
+			Prerelease: github.Bool(false),
+		},
+	}
+
 	cases := map[string]struct {
 		fileContent string
+		preRelease  bool
 
 		expectedError error
 		expectError   bool
 	}{
 		"success case with no error": {
-			fileContent: base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s: %s", k3sVersionKey, "v1.23.3"))),
+			fileContent: fmt.Sprintf("%s: %s", k3sVersionKey, "v1.23.3"),
+		},
+		"success case with a pre-release": {
+			fileContent: fmt.Sprintf("%s: %s", k3sVersionKey, "v1.23.3"),
+			preRelease:  true,
 		},
 		"error case with response error": {
 			expectedError: errors.New("some error"),
@@ -219,30 +254,17 @@ func TestGetLatestK3sRelease(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
 
+			if c.preRelease {
+				commonReleases[0].Prerelease = github.Bool(true)
+			}
+
 			// create new mock client instance
 			githubMockClient := github_mocks.NewMockClient(ctrl)
 
 			// define mock behavior
 			githubMockClient.EXPECT().GetRepositoryReleases(gomock.Any(), gomock.Any()).
 				MaxTimes(1).
-				Return([]*github.RepositoryRelease{
-					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.23.5-rc1"),
-					},
-					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.23.4"),
-					},
-					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.22.3"),
-					},
-					{
-						Body: github.String("some release notes"),
-						Name: github.String("v1.21.5"),
-					},
-				}, nil, c.expectedError)
+				Return(commonReleases, nil, c.expectedError)
 
 			// create mock updater client
 			client := NewClient(context.Background(), Dependencies{
