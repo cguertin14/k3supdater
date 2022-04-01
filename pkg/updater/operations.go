@@ -108,16 +108,16 @@ func (c *ClientSet) getLatestK3sRelease(ctx context.Context, req getLatestK3sRel
 	// Find latest stable versions among all releases
 	latestStableVersions := make([]*github.RepositoryRelease, 0)
 	for _, r := range releases {
-		// Exclude release candidates since
-		// they're not stable versions
-		if strings.Contains(*r.Name, "rc") {
-			continue
-		}
-
 		// Exclude pre-releases, since they're
 		// not fully ready yet
 		if *r.Prerelease {
 			logger.Warnf("A new pre-release is available: %q\n", *r.Name)
+			continue
+		}
+
+		// Exclude release candidates since
+		// they're not stable versions
+		if strings.Contains(*r.Name, "rc") {
 			continue
 		}
 

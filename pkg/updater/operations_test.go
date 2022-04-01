@@ -1,5 +1,3 @@
-//+build unit
-
 package updater
 
 import (
@@ -211,7 +209,7 @@ func TestGetLatestK3sRelease(t *testing.T) {
 		{
 			Body:       github.String("some release notes"),
 			Name:       github.String("v1.23.4"),
-			Prerelease: github.Bool(true),
+			Prerelease: github.Bool(false),
 		},
 		{
 			Body:       github.String("some release notes"),
@@ -233,10 +231,10 @@ func TestGetLatestK3sRelease(t *testing.T) {
 		expectError   bool
 	}{
 		"success case with no error": {
-			fileContent: base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s: %s", k3sVersionKey, "v1.23.3"))),
+			fileContent: fmt.Sprintf("%s: %s", k3sVersionKey, "v1.23.3"),
 		},
-		"error case with a pre-release": {
-			expectError: true,
+		"success case with a pre-release": {
+			fileContent: fmt.Sprintf("%s: %s", k3sVersionKey, "v1.23.3"),
 			preRelease:  true,
 		},
 		"error case with response error": {
@@ -255,9 +253,7 @@ func TestGetLatestK3sRelease(t *testing.T) {
 			defer ctrl.Finish()
 
 			if c.preRelease {
-				firstRelease := commonReleases[0]
-				firstRelease.Prerelease = github.Bool(true)
-				commonReleases[0] = firstRelease
+				commonReleases[0].Prerelease = github.Bool(true)
 			}
 
 			// create new mock client instance
