@@ -1,5 +1,5 @@
 # Step 1 - compile code binary
-FROM golang:1.18.2-alpine AS builder
+FROM golang:1.18.3-alpine AS builder
 
 LABEL maintainer="Charles Guertin <charlesguertin@live.ca>"
 
