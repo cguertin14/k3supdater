@@ -8,7 +8,7 @@ require (
 	github.com/google/go-github/v43 v43.0.0
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/viper v1.12.0
-	golang.org/x/mod v0.5.1
+	golang.org/x/mod v0.7.0
 	golang.org/x/oauth2 v0.0.0-20220628200809-02e64fa58f26
 )
 
