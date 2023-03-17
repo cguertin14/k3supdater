@@ -267,6 +267,10 @@ func (c *ClientSet) UpdateK3sRelease(ctx context.Context, req UpdateReleaseReq) 
 		latestRelease:    latestRelease,
 	})
 	if err != nil {
+		if strings.Contains(err.Error(), "exists") {
+			logger.Warnln("PR already exists, exiting.")
+			return nil
+		}
 		return
 	}
 
