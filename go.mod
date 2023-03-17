@@ -1,6 +1,6 @@
 module github.com/cguertin14/k3supdater
 
-go 1.19
+go 1.20
 
 require (
 	github.com/cguertin14/logger v1.0.6
