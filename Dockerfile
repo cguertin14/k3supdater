@@ -18,8 +18,6 @@ ENV CGO_ENABLED=0 \
     VERSION=${VERSION} \
     GIT_COMMIT=${GIT_COMMIT}
 
-RUN apk add --no-cache --update ca-certificates make git
-
 WORKDIR /app
 
 COPY go.* ./
@@ -30,18 +28,7 @@ RUN go build \
     -ldflags "-X github.com/cguertin14/k3supdater/cmd.Version=${VERSION} -X github.com/cguertin14/k3supdater/cmd.BuildDate=${BUILD_DATE} -X github.com/cguertin14/k3supdater/cmd.GitCommit=${GIT_COMMIT}" \
     -o ./k3supdater .
 
-# Add user & group
-RUN addgroup -S updater-group && \
-    adduser -S updater-user -G updater-group
-
-
 # Step 2 - import necessary files to run program.
-FROM scratch
-
-COPY --from=builder /etc/passwd /etc/passwd
+FROM gcr.io/distroless/base-debian11:nonroot
 COPY --from=builder /app/k3supdater /k3supdater
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-
-USER updater-user
-
-ENTRYPOINT ["/k3supdater"]
+ENTRYPOINT ["/ddns"]

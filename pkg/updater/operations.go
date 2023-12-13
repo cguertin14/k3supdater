@@ -162,7 +162,7 @@ func (c *ClientSet) createNewBranch(ctx context.Context, req createNewBranchReq)
 		return "", fmt.Errorf("error when fetching branch %q: %s", req.Repo.Branch, err)
 	}
 
-	branchName = fmt.Sprintf("minor/k3s-%s-update", *req.latestRelease.Name)
+	branchName = fmt.Sprintf("release/k3s-%s-update", *req.latestRelease.Name)
 	_, _, err = c.client.CreateBranch(ctx, legacy.CreateBranchRequest{
 		Owner: req.Repo.Owner,
 		Repo:  req.Repo.Name,
@@ -199,7 +199,7 @@ func (c *ClientSet) updateFile(ctx context.Context, req updateFileReq) (err erro
 				Date:  &now,
 			},
 			Message: github.String(
-				fmt.Sprintf("Updated k3s version %q to %q.", req.currentVersion, *req.latestRelease.Name),
+				fmt.Sprintf("Updated k3s version %s to %s.", req.currentVersion, *req.latestRelease.Name),
 			),
 			SHA: req.repoContent.SHA,
 		},
@@ -221,7 +221,7 @@ func (c *ClientSet) createPR(ctx context.Context, req createPRRequest) error {
 			Body: req.latestRelease.Body,
 			Title: github.String(
 				fmt.Sprintf(
-					"Minor: k3s update from %s to %s",
+					"new release: k3s update from %s to %s",
 					req.currentVersion,
 					*req.latestRelease.Name,
 				),
