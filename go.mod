@@ -6,7 +6,7 @@ require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v43 v43.0.0
-	github.com/google/go-github/v50 v50.2.0
+	github.com/google/go-github/v57 v57.0.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.1
 	golang.org/x/mod v0.14.0
