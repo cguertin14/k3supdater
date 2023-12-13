@@ -10,7 +10,7 @@ import (
 
 	legacy "github.com/cguertin14/k3supdater/pkg/github"
 	"github.com/cguertin14/logger"
-	"github.com/google/go-github/v43/github"
+	"github.com/google/go-github/v57/github"
 	"golang.org/x/mod/semver"
 )
 
@@ -196,7 +196,7 @@ func (c *ClientSet) updateFile(ctx context.Context, req updateFileReq) (err erro
 			Committer: &github.CommitAuthor{
 				Name:  github.String("k3supdater-bot"),
 				Email: github.String("k3supdater-bot@k3s.io"),
-				Date:  &now,
+				Date:  &github.Timestamp{Time: now},
 			},
 			Message: github.String(
 				fmt.Sprintf("Updated k3s version %s to %s.", req.currentVersion, *req.latestRelease.Name),

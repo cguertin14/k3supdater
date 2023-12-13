@@ -10,7 +10,7 @@ import (
 
 	legacy "github.com/cguertin14/k3supdater/pkg/github"
 	gomock "github.com/golang/mock/gomock"
-	github "github.com/google/go-github/v43/github"
+	github "github.com/google/go-github/v57/github"
 )
 
 // MockClient is a mock of Client interface.

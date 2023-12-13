@@ -1,4 +1,5 @@
-//+build test
+//go:build test
+// +build test
 
 package updater
 
@@ -11,7 +12,7 @@ import (
 
 	github_mocks "github.com/cguertin14/k3supdater/pkg/github/mocks"
 	"github.com/golang/mock/gomock"
-	"github.com/google/go-github/v43/github"
+	"github.com/google/go-github/v57/github"
 )
 
 func TestUpdateK3sRelease(t *testing.T) {
