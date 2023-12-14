@@ -31,4 +31,4 @@ RUN go build \
 # Step 2 - import necessary files to run program.
 FROM gcr.io/distroless/base-debian11:nonroot
 COPY --from=builder /app/k3supdater /k3supdater
-ENTRYPOINT ["/ddns"]
+ENTRYPOINT ["/k3supdater"]
