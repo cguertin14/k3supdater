@@ -3,14 +3,16 @@ kind: Kustomization
 
 namespace: k3supdater
 
-commonLabels:
-  app.kubernetes.io/name: k3supdater
-
 resources:
 - namespace.yml
 - cronjob.yml
 
-images:
 # Needs to be updated on each new release
+images:
 - name: quay.io/cguertin14/k3supdater
-  newTag: v1.1.1
+  newTag: v1.1.2
+
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/name: k3supdater
