@@ -1,11 +1,14 @@
 module github.com/cguertin14/k3supdater
 
-go 1.20
+go 1.21
+
+toolchain go1.22.1
 
 require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v57 v57.0.0
+	github.com/google/go-github/v60 v60.0.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.1
 	golang.org/x/mod v0.14.0
