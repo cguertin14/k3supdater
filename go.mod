@@ -1,14 +1,12 @@
 module github.com/cguertin14/k3supdater
 
-go 1.21
-
-toolchain go1.22.1
+go 1.24.0
 
 require (
 	github.com/cguertin14/logger v1.0.6
 	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v57 v57.0.0
-	github.com/google/go-github/v60 v60.0.0
+	github.com/google/go-github/v83 v83.0.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
 	golang.org/x/mod v0.16.0
@@ -18,7 +16,7 @@ require (
 require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/go-querystring v1.2.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
